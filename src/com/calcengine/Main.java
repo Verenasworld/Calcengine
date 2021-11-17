@@ -11,38 +11,36 @@ public class Main {
 
         //set up my loop with for
       for(int i = 0; i< opCodes.length; i++){
-          switch (opCodes[i]){
-              case 'a' :
-                  results[i] = leftVals[i] + rigthVals[i];
-                  break;
-              case  's' :
-                  results[i] = leftVals[i] + rigthVals[i];
-                  break;
-              case 'm':
-                  results[i] = leftVals[i] + rigthVals[i];
-                  break;
-              case 'd':
-                  results[i] = rigthVals[i] != 0 ?leftVals[i] / rigthVals[i] : 0.0d ;
-                  break;
-
-              default:
-                  System.out.println("invalid opCode: " + opCodes[i]);
-                  results[i] = 0.0d;
-                  break;
-          }
+       results[i] = execute(opCodes[i], leftVals[i], rigthVals[i]);
       }
-            // you can do it with a shorter way arrow function using switch (opCode) {
-        //            case 'a' -> result = value1 + value2;
-        //            case 's' -> result = value1 - value2;
-        //            case 'm' -> result = value1 * value2;
-        //            case 'd' -> result = value2 != 0 ? value1 / value2 : 0.0d;
-        //            default -> {
-        //                System.out.println("invalid opCode: " + opCode);
-        //                result = 0.0d;
-        //            }
-        //
-        for(double currentResult : results) //for-each loop
-        System.out.println(currentResult);
 
+      for(double currentResult : results) //for-each loop
+        System.out.println(currentResult);
     }
+
+    //Method
+
+   static double execute(char opCode,double leftVal, double rightVal){
+        double result;
+       switch (opCode){
+           case 'a' :
+               result = leftVal + rightVal;
+               break;
+           case  's' :
+               result = leftVal - rightVal;
+               break;
+           case 'm':
+               result = leftVal * rightVal;
+               break;
+           case 'd':
+               result = rightVal != 0 ?leftVal/ rightVal : 0.0d ;
+               break;
+
+           default:
+               System.out.println("invalid opCode: " + opCode);
+               result = 0.0d;
+               break;
+       }
+       return result;
+   }
 }
